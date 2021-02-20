@@ -28,7 +28,7 @@ const Stats2 = () => {
             <MDBCol class="col-md">
                 <MDBCard className="cascading-admin-card">
                     <div className="admin-up">
-                        <MDBIcon icon="chart-line" className="warning-color"/>
+                        <MDBIcon icon="tree" className="warning-color"/>
                         <div className="data">
                             <p>TREES</p>
                             <h4>
@@ -49,7 +49,7 @@ const Stats2 = () => {
             <MDBCol class="col-md">
                 <MDBCard className="cascading-admin-card">
                     <div className="admin-up">
-                        <MDBIcon icon="chart-pie" className="light-blue lighten-1"/>
+                        <MDBIcon icon="users" className="light-blue lighten-1"/>
                         <div className="data">
                             <p>FRIENDS</p>
                             <h4>
