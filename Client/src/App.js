@@ -14,7 +14,6 @@ const App = () => {
     setOpen(!open)
   }
 
-
   return (
     <Router>
       <div>
