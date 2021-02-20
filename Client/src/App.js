@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Nav from './components/Nav.js';
-import Home from './components/Home.js';
+import LandingPage from './components/LandingPage.js';
 import Garden from "./components/Garden";
 import Questionnaire from "./components/Questionnaire";
 import Stats2 from "./components/Stats2";
@@ -37,10 +37,10 @@ const App = () => {
             <Garden/>
           </Route>
           <Route exact path="/">
-            <Home/>
+            <LandingPage/>
           </Route>
           <Route path="/home">
-            <Home/>
+            <LandingPage/>
           </Route>
         </Switch>
       </div>
