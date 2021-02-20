@@ -6,6 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Nav from './components/Nav.js';
 import Home from './components/Home.js';
+import Garden from "./components/Garden";
+import Questionnaire from "./components/Questionnaire";
+import Stats2 from "./components/Stats2";
+import Stats from "./components/Stats";
 
 const App = () => {
   const [ open, setOpen ] = useState(false)
@@ -20,6 +24,18 @@ const App = () => {
       <div>
         <Nav open={open} handleOpen={handleOpen} isAuthenticated={isAuthenticated}/>
         <Switch>
+          <Route exact path="/questionnaire">
+            <Questionnaire/>
+          </Route>
+          <Route exact path="/stats">
+            <Stats/>
+          </Route>
+          <Route exact path="/stats2">
+            <Stats2/>
+          </Route>
+          <Route exact path="/garden">
+            <Garden/>
+          </Route>
           <Route exact path="/">
             <Home/>
           </Route>
