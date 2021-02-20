@@ -8,8 +8,9 @@ import Nav from './components/Nav.js';
 import LandingPage from './components/LandingPage.js';
 import Garden from "./components/Garden";
 import Questionnaire from "./components/Questionnaire";
-import Stats2 from "./components/Stats2";
+import Overview from "./components/Overview";
 import Stats from "./components/Stats";
+import Home from "./components/Home";
 
 const App = () => {
   const [ open, setOpen ] = useState(false)
@@ -31,7 +32,7 @@ const App = () => {
             <Stats/>
           </Route>
           <Route exact path="/stats2">
-            <Stats2/>
+            <Overview/>
           </Route>
           <Route exact path="/garden">
             <Garden/>
@@ -40,7 +41,7 @@ const App = () => {
             <LandingPage/>
           </Route>
           <Route path="/home">
-            <LandingPage/>
+            <Home/>
           </Route>
         </Switch>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon} from 'mdbreact';
 
-const Stats2 = () => {
+const Overview = () => {
     return (
         <div className="row">
             <MDBCol class="col-md">
@@ -71,5 +71,5 @@ const Stats2 = () => {
     )
 }
 
-export default Stats2;
+export default Overview;
 
