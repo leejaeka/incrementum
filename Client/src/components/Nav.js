@@ -1,15 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'mdbreact/dist/css/mdb.css'
 
-const Nav = () => {
-    const [ open, setOpen ] = useState(false)
-    const [isAuthenticated, setAuth] = useState(false)
-
-    const handleOpen = () => {
-        setOpen(!open)
-    }
+const Nav = ({open, handleOpen, isAuthenticated}) => {
+    
 
     return (
         <MDBNavbar color="default-color" dark expand="md">
