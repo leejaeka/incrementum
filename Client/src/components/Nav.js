@@ -16,11 +16,23 @@ const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
             </MDBNavLink>
             <MDBNavbarToggler onClick={handleOpen}/>
             <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
-                {/*<MDBNavbarNav left>*/}
-                {/*    <MDBNavItem>*/}
-                {/*        <MDBNavLink to="/home">Home</MDBNavLink>*/}
-                {/*    </MDBNavItem>*/}
-                {/*</MDBNavbarNav>*/}
+                <MDBNavbarNav left>
+                    {isAuthenticated && <>
+                        <MDBNavItem>
+                            <MDBNavLink to="/savings">Savings</MDBNavLink>
+                        </MDBNavItem>
+
+                        <MDBNavItem>
+                            <MDBNavLink to="/leaderboard">Leaderboard</MDBNavLink>
+                        </MDBNavItem>
+
+                        <MDBNavItem>
+                            <MDBNavLink to="/profile">Profile</MDBNavLink>
+                        </MDBNavItem>
+
+
+                    </>}
+                </MDBNavbarNav>
 
                 <MDBNavbarNav right>
 
@@ -30,20 +42,9 @@ const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
                         </MDBNavItem> :
                         <>
                             <MDBNavItem>
-                                <MDBNavLink to="/savings">Savings</MDBNavLink>
+                                <MDBNavLink to="#" onClick={() => signOut(setAuth)}>Logout</MDBNavLink>
                             </MDBNavItem>
 
-                            <MDBNavItem>
-                                <MDBNavLink to="/leaderboard">Leaderboard</MDBNavLink>
-                            </MDBNavItem>
-
-                            <MDBNavItem>
-                                <MDBNavLink to="/profile">Profile</MDBNavLink>
-                            </MDBNavItem>
-
-                            <MDBNavItem>
-                                <MDBNavLink to="#" onClick={() => signOut(setAuth)}>Sign out</MDBNavLink>
-                            </MDBNavItem>
                         </>}
 
 
