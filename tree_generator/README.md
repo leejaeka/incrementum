@@ -13,14 +13,18 @@
 
 <br/>
 Generation 100
+
 ![main](/tree_generator/output/t1.png)
 <br/>
 Generation 1000
+
 ![main](/tree_generator/output/t2.png)
 <br/>
 Generation 5000
+
 ![main](/tree_generator/output/t3.png)
 
 <br/>
 Generation 40000
+
 ![main](/tree_generator/output/t4.png)
