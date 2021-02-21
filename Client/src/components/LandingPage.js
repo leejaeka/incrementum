@@ -19,7 +19,8 @@ import 'mdbreact/dist/css/mdb.css'
 import '../css/Home.css'
 import {createUser} from "../utils/AuthHelper";
 
-const LandingPage = ({setAuth, modal, setModal, user}) => {
+const LandingPage = ({setAuth, modal, setModal}) => {
+
 
   const toggle = () => {
     setModal(!modal);

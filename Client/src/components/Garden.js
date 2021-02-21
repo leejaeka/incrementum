@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import '../App.css';
 import background from "../img/2dgrass.png";
+import {MDBBox, MDBBtn, MDBIcon} from "mdbreact";
 
 const WIDTH = 626;
 const HEIGHT = 375;
@@ -29,8 +30,10 @@ const Canvas = props => {
         return position;
     }
 
-    const drawRandomTree = (ctx, frameCount) => {
+    const drawRandomTree = () => {
         // console.log(window.innerWidth/WIDTH)
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext('2d')
 
         if (freeSpace.length) {
             const x = pickRandomPosition();
@@ -62,35 +65,42 @@ const Canvas = props => {
     useEffect(() => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-        context.scale(DISPLAY_WIDTH/ WIDTH, DISPLAY_WIDTH/ WIDTH);
-    },[]);
+        context.scale(DISPLAY_WIDTH / WIDTH, DISPLAY_WIDTH / WIDTH);
+    }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //
+    //     const canvas = canvasRef.current
+    //     const context = canvas.getContext('2d')
+    //     let frameCount = 0
+    //     let animationFrameId
+    //
+    //     //Our draw came here
+    //     const render = () => {
+    //         frameCount++
+    //
+    //         drawRandomTree(context, frameCount)
+    //     }
+    //     render()
+    //
+    //     return () => {
+    //         window.cancelAnimationFrame(animationFrameId)
+    //     }
+    // }, [drawRandomTree])
 
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        let frameCount = 0
-        let animationFrameId
+    return <>
+        <canvas style={{
+            backgroundImage: `url(${background}`,
+            backgroundSize: "contain"
+        }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH) / WIDTH * HEIGHT}
+                ref={canvasRef} {...props} />
+        <MDBBox display="flex" justifyContent="center">
+            <MDBBtn onClick={drawRandomTree} tag="a" size="lg" floating
+                    className="aqua-gradient color-block-5 mb-3 mx-auto rounded-circle z-depth-1">
+                <MDBIcon icon="bolt"/>
+            </MDBBtn>
 
-        //Our draw came here
-        const render = () => {
-            frameCount++
-
-            drawRandomTree(context, frameCount)
-            animationFrameId = window.requestAnimationFrame(render)
-        }
-        render()
-
-        return () => {
-            window.cancelAnimationFrame(animationFrameId)
-        }
-    }, [drawRandomTree])
-
-    return <canvas style={{
-        backgroundImage: `url(${background}`,
-        backgroundSize: "contain"
-    }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH)/WIDTH*HEIGHT}
-                   ref={canvasRef} {...props} />
+        </MDBBox></>
 }
 
 export default Canvas

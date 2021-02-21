@@ -1,7 +1,9 @@
 import React from 'react';
-import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon} from 'mdbreact';
+import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon, MDBProgress} from 'mdbreact';
 
-const Overview = () => {
+const Overview = ({user, setUser}) => {
+    const progress_percentage = user.totalSavings / user.goal
+
     return (
         <div className="overview row">
             <MDBCol className="col-md">
@@ -11,17 +13,13 @@ const Overview = () => {
                         <div className="data">
                             <p>SAVINGS</p>
                             <h4>
-                                <strong>$99</strong>
+                                <strong>{user.totalSavings}</strong>
                             </h4>
                         </div>
                     </div>
                     <MDBCardBody>
-                        <div className="progress">
-                            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25"
-                                 className="progress-bar bg-primary" role="progressbar"
-                                 style={{width: '25%'}}/>
-                        </div>
-                        <MDBCardText>25% to your goal</MDBCardText>
+                        <MDBProgress value={progress_percentage} className="my-2" />
+                        <MDBCardText>{progress_percentage}% to your goal. Keep going!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
@@ -32,12 +30,12 @@ const Overview = () => {
                         <div className="data">
                             <p>TREES</p>
                             <h4>
-                                <strong>19</strong>
+                                <strong>{user.totalTrees}</strong>
                             </h4>
                         </div>
                     </div>
                     <MDBCardBody>
-                        <MDBCardText>That's impressive!</MDBCardText>
+                        <MDBCardText>{user.totalTrees} trees planted. That's impressive!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
@@ -48,12 +46,12 @@ const Overview = () => {
                         <div className="data">
                             <p>FRIENDS</p>
                             <h4>
-                                <strong>5</strong>
+                                <strong>{user.friends}</strong>
                             </h4>
                         </div>
                     </div>
                     <MDBCardBody>
-                        <MDBCardText>You have 5 friends to plant trees with you!</MDBCardText>
+                        <MDBCardText>You have {user.friends} friends to plant trees with you!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
