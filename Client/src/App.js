@@ -15,6 +15,7 @@ import {Login} from "./components/Login";
 import {Signup} from "./components/Signup";
 import SavingsPage from "./SavingsPage";
 import LeaderboardPage from "./LeaderboardPage";
+import ProfilePage from "./ProfilePage";
 
 const App = () => {
   const [ open, setOpen ] = useState(false)
@@ -45,8 +46,8 @@ const App = () => {
           <Route exact path="/overview">
             <Overview/>
           </Route>
-          <Route exact path="/garden">
-            <Garden/>
+          <Route exact path="/profile">
+            <ProfilePage/>
           </Route>
           <Route exact path="/leaderboard">
             <LeaderboardPage/>

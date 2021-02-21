@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBCard, MDBCardBody, MDBInputGroup, MDBContainer, MDBBtn} from 'mdbreact'
+import {MDBBtn, MDBCard, MDBCardBody, MDBInputGroup} from 'mdbreact'
 
 import '../App.css';
 
@@ -13,14 +13,11 @@ const Questionnaire = () => {
     };
 
     const message = "Great. You will save $105 in 5 months";
-    const firstName = "Truman";
 
     return (
-        <MDBContainer>
             <MDBCard>
                 <MDBCardBody>
                     <form onSubmit={handleSubmit}>
-                        <p className="h4 text-center py-4">Let's begin, {firstName}</p>
                         <label htmlFor="questionnaire" className="grey-text font-weight-light">
                             What is your saving goal?
                         </label>
@@ -58,7 +55,6 @@ const Questionnaire = () => {
                     </form>
                 </MDBCardBody>
             </MDBCard>
-        </MDBContainer>
     );
 };
 

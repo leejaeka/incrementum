@@ -40,7 +40,7 @@ const Nav = ({open, handleOpen, isAuthenticated}) => {
                     </MDBNavItem>
 
                     <MDBNavItem>
-                        <MDBNavLink to="/settings">Settings</MDBNavLink>
+                        <MDBNavLink to="/profile">Profile</MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
             </MDBCollapse>
