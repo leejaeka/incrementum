@@ -24,7 +24,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log("isauthenticated triggered")
     const cachedUser = localStorage.getItem('session')
     if (Boolean(cachedUser) !== isAuthenticated) {
       setAuth(Boolean(cachedUser));

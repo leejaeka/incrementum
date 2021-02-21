@@ -10,23 +10,29 @@ const HEIGHT = 375;
 const DISPLAY_WIDTH = 1110;
 
 
-const Garden = ({user, setUser, setAuth}) => {
+const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setSavingAmount, save, setSave}) => {
     const canvasRef = useRef(null);
-    // let freeSpace = [...Array(600).keys()];
     const treeData = new Map()
-
 
     const [freeSpace, setFreeSpace] = useState([...Array(600).keys()])
 
+    useEffect(() => {
+        if (savingAmount > 0 && save) {
+            saveMoney(savingAmount)
+            setSavingAmount(0)
+            setSave(false)
+        }
+    });
 
-    const saveMoney = () => {
+
+    const saveMoney = (savingAmount) => {
         user.totalTrees += 1
-        user.totalSavings += 1
+        user.totalSavings += savingAmount
         setUser({...user})
 
         drawRandomTree()
 
-        submitGoal(setAuth, user, setUser, {totalTrees: user.totalTrees, totalSavings:user.totalSavings})
+        submitGoal(setAuth, user, setUser, {totalTrees: user.totalTrees, totalSavings: user.totalSavings})
     };
 
     const pickRandomPosition = () => {
@@ -110,7 +116,7 @@ const Garden = ({user, setUser, setAuth}) => {
         }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH) / WIDTH * HEIGHT}
                 ref={canvasRef}/>
         <MDBBox display="flex" justifyContent="center">
-            <MDBBtn onClick={saveMoney} tag="a" size="lg" floating
+            <MDBBtn onClick={() => setOpenSavingDialog(true)} tag="a" size="lg" floating
                     className="aqua-gradient color-block-5 mb-3 mx-auto rounded-circle z-depth-1">
                 <MDBIcon icon="bolt"/>
             </MDBBtn>
