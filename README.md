@@ -10,7 +10,7 @@
 
 <br/>
 
-![main](/static/trees.PNG)
+![main](/static/treees.PNG)
 
 <br/>
 
