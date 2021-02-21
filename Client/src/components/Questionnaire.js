@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {MDBBtn, MDBInputGroup, MDBModalFooter} from 'mdbreact'
 
 import '../App.css';
-import {createUser, submitGoal} from "../utils/AuthHelper";
+import {submitGoal} from "../utils/AuthHelper";
 
 const Questionnaire = ({setAuth, user, setUser}) => {
     const [goal, setGoal] = useState(user.goal);
@@ -20,6 +20,9 @@ const Questionnaire = ({setAuth, user, setUser}) => {
         const id = e.target.id;
         if (id === "goal") {
             setGoal(parseInt(e.target.value));
+            if (saveEachTime > goal) {
+                setSaveEachTime(goal)
+            }
         } else {
             setSaveEachTime(parseInt(e.target.value))
         }
@@ -55,7 +58,8 @@ const Questionnaire = ({setAuth, user, setUser}) => {
                 ? <p className="h5 text-center py-3">{message}</p>
                 : null}
             <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={() => submitGoal(setAuth, user, setUser, {goal, saveEachTime})}>Start saving
+                <MDBBtn color="secondary" onClick={() => submitGoal(setAuth, user, setUser, {goal, saveEachTime})}>Start
+                    saving
                     now!</MDBBtn>
             </MDBModalFooter>
 
