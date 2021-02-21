@@ -2,9 +2,9 @@ import React from "react";
 import {MDBBox, MDBBtn, MDBContainer, MDBIcon} from "mdbreact";
 import Overview from "./components/Overview";
 import Garden from "./components/Garden";
-import Chart from "./components/Chart";
 
 const Home = () => {
+
     return (
         <MDBContainer>
             <Overview/>

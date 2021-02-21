@@ -2,8 +2,9 @@ import React from 'react'
 import {MDBCollapse, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBNavItem, MDBNavLink} from "mdbreact"
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'mdbreact/dist/css/mdb.css'
+import {signIn, signOut} from "../utils/AuthHelper";
 
-const Nav = ({open, handleOpen, isAuthenticated}) => {
+const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
 
 
     return (
@@ -23,25 +24,29 @@ const Nav = ({open, handleOpen, isAuthenticated}) => {
 
                 <MDBNavbarNav right>
 
-                    <MDBNavItem>
-                        <MDBNavLink to="/login">Login</MDBNavLink>
-                    </MDBNavItem>
+                    {!isAuthenticated ?
+                        <MDBNavItem>
+                            <MDBNavLink to="#" onClick={() => signIn(setAuth)}>Login</MDBNavLink>
+                        </MDBNavItem> :
+                        <>
+                            <MDBNavItem>
+                                <MDBNavLink to="/savings">Savings</MDBNavLink>
+                            </MDBNavItem>
 
-                    <MDBNavItem>
-                        <MDBNavLink to="/signup">Sign Up</MDBNavLink>
-                    </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="/leaderboard">Leaderboard</MDBNavLink>
+                            </MDBNavItem>
 
-                    <MDBNavItem>
-                        <MDBNavLink to="/savings">Savings</MDBNavLink>
-                    </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="/profile">Profile</MDBNavLink>
+                            </MDBNavItem>
 
-                    <MDBNavItem>
-                        <MDBNavLink to="/leaderboard">Leaderboard</MDBNavLink>
-                    </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="#" onClick={() => signOut(setAuth)}>Sign out</MDBNavLink>
+                            </MDBNavItem>
+                        </>}
 
-                    <MDBNavItem>
-                        <MDBNavLink to="/profile">Profile</MDBNavLink>
-                    </MDBNavItem>
+
                 </MDBNavbarNav>
             </MDBCollapse>
         </MDBNavbar>

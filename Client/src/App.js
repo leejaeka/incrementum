@@ -25,11 +25,18 @@ const App = () => {
     setOpen(!open)
   }
 
+  useEffect(() => {
+    console.log("isauthenticated triggered")
+    if (Boolean(localStorage.getItem('session')) !== isAuthenticated) {
+      setAuth(Boolean(localStorage.getItem('session')));
+    }
+  }, [isAuthenticated]);
+
 
   return (
     <Router>
       <div>
-        <Nav open={open} handleOpen={handleOpen} isAuthenticated={isAuthenticated}/>
+        <Nav open={open} handleOpen={handleOpen} isAuthenticated={isAuthenticated} setAuth={setAuth}/>
         <Switch>
           <Route exact path="/questionnaire">
             <Questionnaire/>

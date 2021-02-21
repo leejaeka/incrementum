@@ -37,11 +37,7 @@ const Overview = () => {
                         </div>
                     </div>
                     <MDBCardBody>
-                        <div className="progress">
-                            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25"
-                                 className="progress-bar bg grey" role="progressbar"
-                                 style={{width: '58%'}}/>
-                        </div>
+                        <MDBCardText>That's impressive!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>

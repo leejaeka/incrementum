@@ -39,7 +39,7 @@ const Canvas = props => {
 
                 // TODO: save to db
                 treeData.set(x, imageNum);
-                console.log(`tree-${imageNum}.png at position ${x}`)
+                // console.log(`tree-${imageNum}.png at position ${x}`)
 
                 const tree = new Image();
                 tree.src = `/trees/tree-${imageNum}.png`;

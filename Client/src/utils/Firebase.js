@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+
 const config = {
     apiKey: "AIzaSyBNyN8iCAWV3owMhaULO0RwacyPGTSta24",
     authDomain: "incrementum-9052d.firebaseapp.com",
@@ -11,4 +12,4 @@ const config = {
     appId: "1:912621220290:web:1e58b44ed9997fc6d5a65b",
 }
 firebase.initializeApp(config);
-export const auth = firebase.auth();
+export const auth = firebase.auth;
