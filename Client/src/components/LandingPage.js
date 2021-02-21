@@ -36,7 +36,7 @@ const LandingPage = () => {
                 <MDBCol md="6" xl="5" className="mt-xl-5">
                   <MDBAnimation type="fadeInRight" delay=".3s">
                     <img
-                      src="https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png"
+                      src={"./img/moose-white.png"}
                       alt=""
                       className="img-fluid"
                     />

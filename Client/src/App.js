@@ -60,10 +60,10 @@ const App = () => {
             <LeaderboardPage/>
           </Route>
           <Route exact path="/">
-            <LandingPage/>
+            {isAuthenticated ? <Home/> :<LandingPage/>}
           </Route>
           <Route path="/home">
-            <Home/>
+            {isAuthenticated ? <Home/> :<LandingPage/>}
           </Route>
         </Switch>
       </div>

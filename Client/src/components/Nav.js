@@ -16,11 +16,11 @@ const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
             </MDBNavLink>
             <MDBNavbarToggler onClick={handleOpen}/>
             <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
-                <MDBNavbarNav left>
-                    <MDBNavItem>
-                        <MDBNavLink to="/home">Home</MDBNavLink>
-                    </MDBNavItem>
-                </MDBNavbarNav>
+                {/*<MDBNavbarNav left>*/}
+                {/*    <MDBNavItem>*/}
+                {/*        <MDBNavLink to="/home">Home</MDBNavLink>*/}
+                {/*    </MDBNavItem>*/}
+                {/*</MDBNavbarNav>*/}
 
                 <MDBNavbarNav right>
 
