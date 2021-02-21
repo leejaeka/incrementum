@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request, jsonify
+from flask_cors import CORS
+
 
 # FOR TREE gen
 import torch
@@ -15,6 +17,7 @@ import base64
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 class Generator(nn.Module):
     '''
