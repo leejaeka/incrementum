@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon, MDBProgress} from 'mdbreact';
 
 const Overview = ({user, setUser}) => {
-    let progress_percentage = Math.floor(user.totalSavings / user.goal * 100)
+    const [progressPercentage, setProgressPercentage] = useState(user.goal ? Math.floor(user.totalSavings / user.goal * 100) : 0)
 
     return (
         <div className="overview row">
@@ -18,8 +18,8 @@ const Overview = ({user, setUser}) => {
                         </div>
                     </div>
                     <MDBCardBody>
-                        <MDBProgress value={progress_percentage} className="my-2" />
-                        <MDBCardText>{progress_percentage}% to your goal. Keep going!</MDBCardText>
+                        <MDBProgress value={progressPercentage} className="my-2"/>
+                        <MDBCardText>{progressPercentage}% to your goal. Keep going!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
@@ -46,12 +46,12 @@ const Overview = ({user, setUser}) => {
                         <div className="data">
                             <p>FRIENDS</p>
                             <h4>
-                                <strong>{user.friends}</strong>
+                                <strong>{user.totalFriend}</strong>
                             </h4>
                         </div>
                     </div>
                     <MDBCardBody>
-                        <MDBCardText>You have {user.friends} friends to plant trees with you!</MDBCardText>
+                        <MDBCardText>You have {user.totalFriend} friends to plant trees with you!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
