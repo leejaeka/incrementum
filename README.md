@@ -3,9 +3,17 @@
 
 ![main](/static/incrementum.PNG)
 <br/>
-![main](/static/Setup.PNG)
+Grow your AI-generated garden with your friends!
 <br/>
 ![main](/static/trees.PNG)
+<br/>
+Set up your goal!
+<br/>
+![main](/static/Setup.PNG)
+<br/>
+Manage your finance productivity!
+<br/>
+![main](/static/manage.PNG)
 <br/>
 ## Available Scripts
 
