@@ -58,7 +58,6 @@ const App = () => {
   const [modal, setModal] = useState(false)
   const [user, setUser] = useState(mockData.users[0])
 
-
   const handleOpen = () => {
     setOpen(!open)
   }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon, MDBProgress} from 'mdbreact';
 
 const Overview = ({user, setUser}) => {
-    const progress_percentage = user.totalSavings / user.goal
+    let progress_percentage = Math.floor(user.totalSavings / user.goal * 100)
 
     return (
         <div className="overview row">

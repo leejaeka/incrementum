@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import '../App.css';
 import background from "../img/2dgrass.png";
 import {MDBBox, MDBBtn, MDBIcon} from "mdbreact";
@@ -9,12 +9,23 @@ const HEIGHT = 375;
 const DISPLAY_WIDTH = 1110;
 
 
-const Canvas = props => {
+const Garden = ({user, setUser}) => {
     const canvasRef = useRef(null);
-
-
-    let freeSpace = [...Array(600).keys()];
+    // let freeSpace = [...Array(600).keys()];
     const treeData = new Map()
+
+
+    const [freeSpace, setFreeSpace] = useState([...Array(600).keys()])
+
+
+    const saveMoney = () => {
+        user.totalTrees += 1
+        user.totalSavings += 1
+        user = {...user};
+        setUser(user)
+
+        drawRandomTree()
+    };
 
     const pickRandomPosition = () => {
         const idx = Math.floor(Math.random() * freeSpace.length);
@@ -26,7 +37,7 @@ const Canvas = props => {
         }
 
         // remove from freeSpace
-        freeSpace = freeSpace.filter(i => i <= position - 20 || i >= position + 20);
+        setFreeSpace(freeSpace.filter(i => i <= position - 20 || i >= position + 20))
         return position;
     }
 
@@ -35,22 +46,22 @@ const Canvas = props => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
 
-        if (freeSpace.length) {
-            const x = pickRandomPosition();
-            if (x > 0) {
-                const imageNum = Math.floor(Math.random() * 100) + 1 // 1 to 100
 
-                // TODO: save to db
-                treeData.set(x, imageNum);
-                // console.log(`tree-${imageNum}.png at position ${x}`)
+        const x = pickRandomPosition();
+        if (x > 0) {
+            const imageNum = Math.floor(Math.random() * 100) + 1 // 1 to 100
 
-                const tree = new Image();
-                tree.src = `/trees/tree-${imageNum}.png`;
-                tree.onload = () => {
-                    ctx.drawImage(tree, x, 260);
-                }
+            // TODO: save to db
+            treeData.set(x, imageNum);
+            // console.log(`tree-${imageNum}.png at position ${x}`)
+
+            const tree = new Image();
+            tree.src = `/trees/tree-${imageNum}.png`;
+            tree.onload = () => {
+                ctx.drawImage(tree, x, 260);
             }
         }
+
 
     }
 
@@ -93,9 +104,9 @@ const Canvas = props => {
             backgroundImage: `url(${background}`,
             backgroundSize: "contain"
         }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH) / WIDTH * HEIGHT}
-                ref={canvasRef} {...props} />
+                ref={canvasRef}/>
         <MDBBox display="flex" justifyContent="center">
-            <MDBBtn onClick={drawRandomTree} tag="a" size="lg" floating
+            <MDBBtn onClick={saveMoney} tag="a" size="lg" floating
                     className="aqua-gradient color-block-5 mb-3 mx-auto rounded-circle z-depth-1">
                 <MDBIcon icon="bolt"/>
             </MDBBtn>
@@ -103,4 +114,4 @@ const Canvas = props => {
         </MDBBox></>
 }
 
-export default Canvas
+export default Garden
