@@ -1,15 +1,3 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 a {
   color: #61dafb;
 }
@@ -72,5 +60,21 @@ a {
   }
 }
 
+.overview {
+  margin: 50px 0 ;
+}
 
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0;
+}
 
+.color-block-5 {
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+}
+
+.profile {
+  margin-top: 30px;
+}
