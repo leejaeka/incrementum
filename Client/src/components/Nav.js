@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import 'mdbreact/dist/css/mdb.css'
 import {signIn, signOut} from "../utils/AuthHelper";
 
-const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
+const Nav = ({open, handleOpen, isAuthenticated, setModal, setAuth, setUser}) => {
 
 
     return (
@@ -38,7 +38,7 @@ const Nav = ({open, handleOpen, isAuthenticated, setAuth}) => {
 
                     {!isAuthenticated ?
                         <MDBNavItem>
-                            <MDBNavLink to="#" onClick={() => signIn(setAuth)}>Login</MDBNavLink>
+                            <MDBNavLink to="#" onClick={() => signIn(setAuth, setUser, setModal)}>Login</MDBNavLink>
                         </MDBNavItem> :
                         <>
                             <MDBNavItem>

@@ -1,6 +1,6 @@
 import {auth} from './Firebase.js'
 
-export function signIn(setAuth) {
+export function signIn(setAuth, setUser, setModal) {
     const provider = new auth.GoogleAuthProvider();
 
     auth()
@@ -16,8 +16,15 @@ export function signIn(setAuth) {
             // ...
 
             console.log(user)
-            localStorage.setItem('session', user)
-            setAuth(true)
+            localStorage.setItem('session', JSON.stringify(user));
+            setUser(user)
+
+            if (false /* TODO: check if user exist in backend*/) {
+                setAuth(true);
+            } else {
+                setAuth(false);
+                setModal(true);
+            }
         }).catch((error) => {
         console.log(error)
         // Handle Errors here.
@@ -37,36 +44,38 @@ export function signOut(setAuth) {
     return auth().signOut();
 }
 
-// export function createUser(email, password, type, setUser) {
-//     return auth.createUserWithEmailAndPassword(email, password)
-//         .then((user) => {
-//             return fetch(config.serverUrl + "/user", {
-//                 method: "POST",
-//                 headers: {
-//                     Accept: "application/json",
-//                     "Content-Type": "application/json",
-//                 },
-//                 body: JSON.stringify({
-//                     email, type, uid: user.user.uid
-//                 }),
-//             }).then(response => {
-//                 if (response.ok) {
-//                     const user_obj = JSON.parse(JSON.stringify(user)).user;
-//                     setUser({ ...user_obj, type })    // set global user state in App.tsx
-//                     console.log("user created:", user_obj)
-//                     return user
-//                 } else {
-//                     const user = auth.currentUser;
-//                     // delete user from firebase if backend failed to create
-//                     if (user) {
-//                         user.delete()
-//                     }
-//                     return Promise.reject(new Error("Failed to create user"));
-//                 }
-//             })
-//         })
-// }
-//
+export function createUser(email, password, type, setUser, setAuth) {
+    // TODO: create user in backend
+    setAuth(true);
+    // return auth.createUserWithEmailAndPassword(email, password)
+    //     .then((user) => {
+    //         return fetch(config.serverUrl + "/user", {
+    //             method: "POST",
+    //             headers: {
+    //                 Accept: "application/json",
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 email, type, uid: user.user.uid
+    //             }),
+    //         }).then(response => {
+    //             if (response.ok) {
+    //                 const user_obj = JSON.parse(JSON.stringify(user)).user;
+    //                 setUser({ ...user_obj, type })    // set global user state in App.tsx
+    //                 console.log("user created:", user_obj)
+    //                 return user
+    //             } else {
+    //                 const user = auth.currentUser;
+    //                 // delete user from firebase if backend failed to create
+    //                 if (user) {
+    //                     user.delete()
+    //                 }
+    //                 return Promise.reject(new Error("Failed to create user"));
+    //             }
+    //         })
+    //     })
+}
+
 
 //
 // export function login(email, password, setUser) {
