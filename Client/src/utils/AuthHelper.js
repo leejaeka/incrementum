@@ -55,10 +55,10 @@ export function signIn(setAuth, setUser, setModal) {
                 email: user.email,
                 uid: user.uid
             }
-            user = {...user};
+            newUser = {...newUser};
 
 
-            db.collection("users").doc(user.uid).get().then(doc => {
+            db.collection("users").doc(newUser.uid).get().then(doc => {
                 console.log(doc.data())
                 if (doc.exists && doc.data().goalSet) {
                     localStorage.setItem('session', JSON.stringify(doc.data()));
