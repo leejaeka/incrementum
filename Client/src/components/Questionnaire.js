@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {MDBBtn, MDBInputGroup, MDBModalFooter} from 'mdbreact'
 
 import '../App.css';
-import {submitGoal} from "../utils/AuthHelper";
+import {updateUser} from "../utils/AuthHelper";
 
 const Questionnaire = ({setAuth, user, setUser}) => {
     const [goal, setGoal] = useState(user.goal);
@@ -58,7 +58,7 @@ const Questionnaire = ({setAuth, user, setUser}) => {
                 ? <p className="h5 text-center py-3">{message}</p>
                 : null}
             <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={() => submitGoal(setAuth, user, setUser, {goal, saveEachTime})}>Start
+                <MDBBtn color="secondary" onClick={() => updateUser(setAuth, user, setUser, {goal, saveEachTime})}>Start
                     planting
                     now!</MDBBtn>
             </MDBModalFooter>

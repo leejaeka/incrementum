@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom'
 
 
 const LeaderboardPage = ({isAuthenticated, user}) => {
-    const cachedUser = localStorage.getItem('session')
     if (!isAuthenticated)
         return <Redirect to='/'/>
 

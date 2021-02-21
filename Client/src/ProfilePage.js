@@ -2,11 +2,10 @@ import React from "react";
 import {MDBBtn, MDBContainer, MDBModalFooter} from "mdbreact";
 import Questionnaire from "./components/Questionnaire";
 import {Redirect} from 'react-router-dom'
-import {deleteUser, submitGoal} from "./utils/AuthHelper";
+import {deleteUser, updateUser} from "./utils/AuthHelper";
 
 
 const ProfilePage = ({isAuthenticated, user, setUser, setAuth}) => {
-    const cachedUser = localStorage.getItem('session')
     if (!isAuthenticated)
         return <Redirect to='/'/>
 

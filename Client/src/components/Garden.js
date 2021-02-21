@@ -2,7 +2,8 @@ import React, {useEffect, useRef, useState} from 'react'
 import '../App.css';
 import background from "../img/2dgrass.png";
 import {MDBBox, MDBBtn, MDBIcon} from "mdbreact";
-import {submitGoal} from "../utils/AuthHelper";
+import {updateUser} from "../utils/AuthHelper";
+import fb from "firebase";
 
 const WIDTH = 626;
 const HEIGHT = 375;
@@ -28,11 +29,15 @@ const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setS
     const saveMoney = (savingAmount) => {
         user.totalTrees += 1
         user.totalSavings += savingAmount
+        user.savings.push({
+            time: fb.firestore.Timestamp.now(),
+            amount: savingAmount
+        })
         setUser({...user})
 
         drawRandomTree()
 
-        submitGoal(setAuth, user, setUser, {totalTrees: user.totalTrees, totalSavings: user.totalSavings})
+        updateUser(setAuth, user, setUser, {totalTrees: user.totalTrees, totalSavings: user.totalSavings})
     };
 
     const pickRandomPosition = () => {

@@ -2,10 +2,12 @@ import React from "react";
 import {Line} from "react-chartjs-2";
 import {MDBContainer} from "mdbreact";
 
-const ChartsPage = () => {
+const ChartsPage = ({user}) => {
+
+
     const state = {
         dataLine: {
-            labels: pastSevenDays(),
+            labels: user.savings.map((entry, i) => `#${i+1}: ` + new Date(entry.time.seconds * 1000).toLocaleDateString("en-US")),
             datasets: [
                 {
                     label: "My Savings ($)",
@@ -26,7 +28,7 @@ const ChartsPage = () => {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [5, 8, 16, 32, 40, 55, 80]
+                    data: user.savings.map((acc => val => acc += val.amount)(0))
                 },
             ]
         }
