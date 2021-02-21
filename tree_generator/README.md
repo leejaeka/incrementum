@@ -1,5 +1,7 @@
 # WGAN-GP REST-API (16bits tree generator)
 
+To generate tree image, use GET from https://tree-generate.herokuapp.com/generate . Then use this python code >>base64.b64decode(data['img']) to decode the json file to image. (Note: there are \n in the string don't forget to remove them. You may find .replace('\n', '') useful.)
+
 16 by 16 pixel tree generation using WGAN-GP. The project is best described with pictures below. All the trees are GAN generated meaning no two trees are the same! Here are some of my favorites.
 
 <br/>
