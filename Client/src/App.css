@@ -78,3 +78,8 @@ html, body {
 .profile {
   margin-top: 30px;
 }
+
+.response {
+  margin-left: 15px;
+  font-weight: bold;
+}

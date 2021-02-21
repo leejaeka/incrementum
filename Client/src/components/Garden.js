@@ -17,11 +17,11 @@ const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setS
     const [freeSpace, setFreeSpace] = useState([...Array(600).keys()])
 
     useEffect(() => {
-        if (savingAmount > 0 && save) {
+        if (savingAmount && savingAmount > 0 && save) {
             saveMoney(savingAmount)
             setSavingAmount(0)
-            setSave(false)
         }
+        setSave(false)
     });
 
 

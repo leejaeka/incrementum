@@ -30,7 +30,7 @@ const Questionnaire = ({setAuth, user, setUser}) => {
     return (
         <form onSubmit={handleSubmit}>
             <label className="form-label" htmlFor="questionnaire">What is your saving goal?</label>
-            <strong>${goal}</strong>
+            <span className={"response"}>${goal}</span>
             <MDBInputGroup
                 required
                 id="goal"
@@ -45,7 +45,7 @@ const Questionnaire = ({setAuth, user, setUser}) => {
             />
             <br/>
             <label className="form-label" htmlFor="questionnaire">How much do you want to save per
-                week?</label> ${saveEachTime}
+                week?</label> <span className={"response"}>${saveEachTime}</span>
             <div className="range">
                 <input type="range" className="form-range" min="1" max={goal} id="saveEachTime"
                        onChange={handleChange}/>
