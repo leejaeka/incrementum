@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import '../App.css';
 import background from "../img/2dgrass.png";
 import {MDBBox, MDBBtn, MDBIcon} from "mdbreact";
+import {submitGoal} from "../utils/AuthHelper";
 
 const WIDTH = 626;
 const HEIGHT = 375;
@@ -9,7 +10,7 @@ const HEIGHT = 375;
 const DISPLAY_WIDTH = 1110;
 
 
-const Garden = ({user, setUser}) => {
+const Garden = ({user, setUser, setAuth}) => {
     const canvasRef = useRef(null);
     // let freeSpace = [...Array(600).keys()];
     const treeData = new Map()
@@ -21,10 +22,11 @@ const Garden = ({user, setUser}) => {
     const saveMoney = () => {
         user.totalTrees += 1
         user.totalSavings += 1
-        user = {...user};
-        setUser(user)
+        setUser({...user})
 
         drawRandomTree()
+
+        submitGoal(setAuth, user, setUser, {totalTrees: user.totalTrees, totalSavings:user.totalSavings})
     };
 
     const pickRandomPosition = () => {
@@ -49,6 +51,8 @@ const Garden = ({user, setUser}) => {
 
         const x = pickRandomPosition();
         if (x > 0) {
+
+
             const imageNum = Math.floor(Math.random() * 100) + 1 // 1 to 100
 
             // TODO: save to db

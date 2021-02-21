@@ -1,6 +1,8 @@
 # Incrementum
 
-Web application that will give prompts and tasks for people to make financial decisions and every time that a task is completed it will create a unique plant which is added to a garden
+
+![main](/static/incrementum.PNG)
+<br/>
 
 ## Available Scripts
 
@@ -18,3 +20,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Dataset 
+100 (32x32)pixels tree art. [Link](http://pixeljoint.com/pixelart/87096.htm)
+
+## Reference
+- [Generative Deep Learning](https://www.oreilly.com/library/view/generative-deep-learning/9781492041931/) by David Foster
+- Wasserstein GAN (Arjovsky, Chintala, and Bottou, 2017): https://arxiv.org/abs/1701.07875
+- Improved Training of Wasserstein GANs (Gulrajani et al., 2017): https://arxiv.org/abs/1704.00028

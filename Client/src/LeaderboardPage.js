@@ -3,7 +3,7 @@ import {MDBContainer} from "mdbreact";
 import {Redirect} from 'react-router-dom'
 
 
-const LeaderboardPage = ({isAuthenticated}) => {
+const LeaderboardPage = ({isAuthenticated, user}) => {
     if (!isAuthenticated)
         return <Redirect to='/'/>
 

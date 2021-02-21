@@ -1,9 +1,13 @@
-import React from 'react';
-import {MDBBtn, MDBInputGroup} from 'mdbreact'
+import React, {useState} from 'react';
+import {MDBBtn, MDBInputGroup, MDBModalFooter} from 'mdbreact'
 
 import '../App.css';
+import {createUser, submitGoal} from "../utils/AuthHelper";
 
-const Questionnaire = ({session}) => {
+const Questionnaire = ({setAuth, user, setUser}) => {
+    const [goal, setGoal] = useState(user.goal);
+    const [saveEachTime, setSaveEachTime] = useState(user.saveEachTime);
+
     const handleSubmit = () => {
 
     };
@@ -12,45 +16,50 @@ const Questionnaire = ({session}) => {
 
     };
 
-    const message = "Great. You will save $105 in 5 months";
+    const handleChange = (e) => {
+        const id = e.target.id;
+        if (id === "goal") {
+            setGoal(parseInt(e.target.value));
+        } else {
+            setSaveEachTime(parseInt(e.target.value))
+        }
+    };
+
+    const message = `You will save $${goal} in ${Math.floor(goal / saveEachTime)} weeks`;
 
     return (
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="questionnaire" className="grey-text font-weight-light">
-                            What is your saving goal?
-                        </label>
-                        <MDBInputGroup
-                            required
-                            id="questionnaire"
-                            name="name"
-                            onChange={handleForm}
-                            material
-                            containerClassName="mb-3"
-                            prepend="$"
-                            append=".00"
-                        />
-                        <br/>
-                        <label htmlFor="questionnaire" className="grey-text font-weight-light">
-                            Good choice! How frequently do you want to save?
-                        </label>
-                        <div className="my-5">
-                            <input type="range" className="custom-range" id="amountRange"/>
-                        </div>
-                        <select className="browser-default custom-select">
-                            <option value="1">per day</option>
-                            <option value="2">per week</option>
-                            <option value="3">per month</option>
-                        </select>
-                        <br/>
-                        <div className="text-center py-4 mt-3">
-                            <MDBBtn className="btn btn-outline-green" type="submit">
-                                Submit
-                            </MDBBtn>
-                        </div>
-                        {message
-                            ? <p className="h4 text-center py-4">{message}</p>
-                            : null}
-                    </form>
+        <form onSubmit={handleSubmit}>
+            <label className="form-label" htmlFor="questionnaire">What is your saving goal?</label>
+            <strong>${goal}</strong>
+            <MDBInputGroup
+                required
+                id="goal"
+                name="name"
+                onChange={handleForm}
+                material
+                containerClassName="mb-3"
+                prepend="$"
+                type="number"
+                append=""
+                onChange={handleChange}
+            />
+            <br/>
+            <label className="form-label" htmlFor="questionnaire">How much do you want to save per
+                week?</label> ${saveEachTime}
+            <div className="range">
+                <input type="range" className="form-range" min="1" max={goal} id="saveEachTime"
+                       onChange={handleChange}/>
+            </div>
+            <br/>
+            {message
+                ? <p className="h5 text-center py-3">{message}</p>
+                : null}
+            <MDBModalFooter>
+                <MDBBtn color="secondary" onClick={() => submitGoal(setAuth, user, setUser, {goal, saveEachTime})}>Start saving
+                    now!</MDBBtn>
+            </MDBModalFooter>
+
+        </form>
     );
 };
 

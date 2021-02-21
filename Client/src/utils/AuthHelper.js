@@ -1,4 +1,37 @@
-import {auth} from './Firebase.js'
+import {auth, db} from './Firebase.js'
+
+let TEMPLATE =
+    {
+        name: 'John Doe',
+        uid: 0,
+        email: "john.doe@mail.utoronto.ca",
+        goalSet: false,
+
+        goal: 1,
+        saveEachTime: 1,
+
+        totalSavings: 0,
+        totalTrees: 0,
+        totalFriend: 0,
+
+        // [timestamp, amount]
+        savings: [
+            // {
+            //     time: 12345,
+            //     amount: 123
+            // }
+        ],
+
+        friends: [],
+
+        tree: [
+            // {
+            //     position: 0
+            //     base64: "asdasdasdsad"
+            // }
+        ]
+    }
+
 
 export function signIn(setAuth, setUser, setModal) {
     const provider = new auth.GoogleAuthProvider();
@@ -15,16 +48,33 @@ export function signIn(setAuth, setUser, setModal) {
             var user = result.user;
             // ...
 
-            console.log(user)
-            localStorage.setItem('session', JSON.stringify(user));
-            setUser(user)
 
-            if (false /* TODO: check if user exist in backend*/) {
-                setAuth(true);
-            } else {
-                setAuth(false);
-                setModal(true);
+            let newUser = {
+                ...TEMPLATE,
+                name: user.displayName,
+                email: user.email,
+                uid: user.uid
             }
+            newUser = {...newUser};
+
+
+            db.collection("users").doc(newUser.uid).get().then(doc => {
+                console.log(doc.data())
+                if (doc.exists && doc.data().goalSet) {
+                    localStorage.setItem('session', JSON.stringify(doc.data()));
+                    setUser(doc.data())
+                    setAuth(true);
+                    setModal(false);
+                } else {
+                    // localStorage.setItem('session', JSON.stringify(newUser));
+                    setUser(newUser)
+                    setAuth(false);
+                    setModal(true);
+
+                    addUser(newUser)
+                }
+            });
+
         }).catch((error) => {
         console.log(error)
         // Handle Errors here.
@@ -44,9 +94,24 @@ export function signOut(setAuth) {
     return auth().signOut();
 }
 
-export function createUser(email, password, type, setUser, setAuth) {
-    // TODO: create user in backend
-    setAuth(true);
+export function addUser(user) {
+    db.collection("users").doc(user.uid).set(user);
+}
+
+// export async function isExistedUser(uid) {
+//     await db.collection("users").doc(uid).get().then(doc => doc.exists)
+// }
+
+
+
+export function submitGoal(setAuth, user, setUser, items) {
+    user = {...user, goalSet:true, ...items} /* order matters */
+    setUser({...user})
+
+    db.collection("users").doc(user.uid).set(user);
+    localStorage.setItem('session', JSON.stringify(user));
+
+    setAuth(true)
     // return auth.createUserWithEmailAndPassword(email, password)
     //     .then((user) => {
     //         return fetch(config.serverUrl + "/user", {

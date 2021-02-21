@@ -20,7 +20,7 @@ import '../css/Home.css'
 import {createUser} from "../utils/AuthHelper";
 import Questionnaire from "./Questionnaire";
 
-const LandingPage = ({setAuth, modal, setModal, session}) => {
+const LandingPage = ({setAuth, modal, setModal, user, setUser}) => {
 
 
   const toggle = () => {
@@ -67,14 +67,10 @@ const LandingPage = ({setAuth, modal, setModal, session}) => {
 
 
               <MDBModal isOpen={modal} toggle={toggle}>
-                <MDBModalHeader toggle={toggle}>Let's get started, {session.displayName}!</MDBModalHeader>
+                <MDBModalHeader toggle={toggle}>Let's get started, {user.name}!</MDBModalHeader>
                 <MDBModalBody>
-                  <Questionnaire session={session}/>
+                  <Questionnaire setAuth={setAuth} user={user} setUser={setUser}/>
                 </MDBModalBody>
-                <MDBModalFooter>
-                  <MDBBtn color="secondary" onClick={() => createUser(true, true, true, true, setAuth)}>Start saving
-                    now!</MDBBtn>
-                </MDBModalFooter>
               </MDBModal>
             </MDBContainer>
           </MDBMask>

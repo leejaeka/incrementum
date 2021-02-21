@@ -3,7 +3,7 @@ import {MDBContainer} from "mdbreact";
 import Chart from "./components/Chart";
 import {Redirect} from 'react-router-dom'
 
-const SavingsPage = ({isAuthenticated}) => {
+const SavingsPage = ({user, isAuthenticated}) => {
     if (!isAuthenticated)
         return <Redirect to='/'/>
 
