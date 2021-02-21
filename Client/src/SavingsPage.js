@@ -2,41 +2,39 @@ import React from "react";
 import {MDBContainer} from "mdbreact";
 import Chart from "./components/Chart";
 import {Redirect} from 'react-router-dom'
+import fb from "firebase";
 
 const SavingsPage = ({user, isAuthenticated}) => {
     if (!isAuthenticated)
         return <Redirect to='/'/>
+
+
+    const savingHistory = user.savings.slice(0).reverse().map((entry,i) => {
+        return <tr>
+            <td scope="row">{user.savings.length - i}</td>
+            <td>{new Date(entry.time.seconds * 1000).toLocaleDateString("en-US")}</td>
+            <td>${entry.amount}</td>
+            <td><strong>{entry.reward}</strong></td>
+        </tr>
+    });
 
     return (
         <MDBContainer>
             <table className="table">
                 <thead>
                 <tr>
+                    <th scope="col">Entry</th>
                     <th scope="col">Date</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Earning</th>
+                    <th scope="col">Reward</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">Insert Date</th>
-                    <td>$Insert amount</td>
-                    <td><strong>Pending for friends confirm</strong></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>$10</td>
-                    <td>3 trees</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>$1</td>
-                    <td>not eligible</td>
-                </tr>
+                {savingHistory}
                 </tbody>
             </table>
 
-            <Chart/>
+            <Chart user={user}/>
         </MDBContainer>
     );
 }

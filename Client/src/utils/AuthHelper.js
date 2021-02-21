@@ -1,6 +1,6 @@
 import {auth, db} from './Firebase.js'
 
-let TEMPLATE =
+const USER_TEMPLATE =
     {
         name: 'John Doe',
         uid: 0,
@@ -46,11 +46,9 @@ export function signIn(setAuth, setUser, setModal) {
             var token = credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            // ...
-
 
             let newUser = {
-                ...TEMPLATE,
+                ...USER_TEMPLATE,
                 name: user.displayName,
                 email: user.email,
                 uid: user.uid
@@ -66,7 +64,6 @@ export function signIn(setAuth, setUser, setModal) {
                     setAuth(true);
                     setModal(false);
                 } else {
-                    // localStorage.setItem('session', JSON.stringify(newUser));
                     setUser(newUser)
                     setAuth(false);
                     setModal(true);
@@ -76,15 +73,7 @@ export function signIn(setAuth, setUser, setModal) {
             });
 
         }).catch((error) => {
-        console.log(error)
-        // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // // The email of the user's account used.
-        // var email = error.email;
-        // // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
-        // ...
+        console.log(error.code, error.message)
     });
 }
 
@@ -98,72 +87,26 @@ export function addUser(user) {
     db.collection("users").doc(user.uid).set(user);
 }
 
-// export async function isExistedUser(uid) {
-//     await db.collection("users").doc(uid).get().then(doc => doc.exists)
-// }
-
-
-
-export function submitGoal(setAuth, user, setUser, items) {
-    user = {...user, goalSet:true, ...items} /* order matters */
+export function updateUser(setAuth, user, setUser, items) {
+    user = {...user, goalSet: true, ...items} /* order matters */
     setUser({...user})
 
     db.collection("users").doc(user.uid).set(user);
     localStorage.setItem('session', JSON.stringify(user));
 
     setAuth(true)
-    // return auth.createUserWithEmailAndPassword(email, password)
-    //     .then((user) => {
-    //         return fetch(config.serverUrl + "/user", {
-    //             method: "POST",
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify({
-    //                 email, type, uid: user.user.uid
-    //             }),
-    //         }).then(response => {
-    //             if (response.ok) {
-    //                 const user_obj = JSON.parse(JSON.stringify(user)).user;
-    //                 setUser({ ...user_obj, type })    // set global user state in App.tsx
-    //                 console.log("user created:", user_obj)
-    //                 return user
-    //             } else {
-    //                 const user = auth.currentUser;
-    //                 // delete user from firebase if backend failed to create
-    //                 if (user) {
-    //                     user.delete()
-    //                 }
-    //                 return Promise.reject(new Error("Failed to create user"));
-    //             }
-    //         })
-    //     })
 }
 
 
-//
-// export function login(email, password, setUser) {
-//     return auth.signInWithEmailAndPassword(email, password)
-//         .then((user) => {
-//             // const user_obj = JSON.parse(JSON.stringify(user)).user;
-//             //
-//             // fetch(config.serverUrl + "/user/token/" + user_obj.stsTokenManager.accessToken, {
-//             //     method: "GET",
-//             //     headers: {
-//             //         Accept: "application/json",
-//             //         "Content-Type": "application/json",
-//             //     },
-//             // }).then(mongo_user_obj => mongo_user_obj.json())
-//             //     .then(json_obj => json_obj.type)
-//             //     .then(type => {
-//             //         setUser({ ...user_obj, type })    // set global user state in App.tsx
-//             //     });
-//             //
-//             // console.log(`signed in as ${user_obj.email}: `, user_obj)
-//         })
-// }
-//
-// export function resetPassword(email) {
-//     return auth.sendPasswordResetEmail(email);
-// }
+export function deleteUser(user, setUser, setAuth) {
+    db.collection("users").doc(user.uid).delete().then(() => {
+        signOut(setAuth)
+
+        console.log("User successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing user: ", error);
+    });
+}
+
+
+

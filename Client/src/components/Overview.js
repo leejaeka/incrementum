@@ -13,7 +13,7 @@ const Overview = ({user, setUser}) => {
                         <div className="data">
                             <p>SAVINGS</p>
                             <h4>
-                                <strong>{user.totalSavings}</strong>
+                                <strong>${user.totalSavings}</strong>
                             </h4>
                         </div>
                     </div>

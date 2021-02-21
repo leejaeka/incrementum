@@ -30,7 +30,8 @@ const Home = ({user, setUser, setAuth}) => {
     return (
         <MDBContainer>
             <Overview user={user} setUser={setUser}/>
-            <Garden user={user} setUser={setUser} setAuth={setAuth} setOpenSavingDialog={setOpenSavingDialog} savingAmount={savingAmount} setSavingAmount={setSavingAmount} save={save} setSave={setSave}/>
+            <Garden user={user} setUser={setUser} setAuth={setAuth} setOpenSavingDialog={setOpenSavingDialog}
+                    savingAmount={savingAmount} setSavingAmount={setSavingAmount} save={save} setSave={setSave}/>
 
             <Popper
                 open={openSavingDialog}
