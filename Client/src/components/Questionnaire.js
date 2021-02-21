@@ -19,12 +19,12 @@ const Questionnaire = ({setAuth, user, setUser}) => {
     const handleChange = (e) => {
         const id = e.target.id;
         if (id === "goal") {
-            setGoal(parseInt(e.target.value));
+            setGoal(parseInt(e.target.value) || 1);
             if (saveEachTime > goal) {
                 setSaveEachTime(goal)
             }
         } else {
-            setSaveEachTime(parseInt(e.target.value))
+            setSaveEachTime(parseInt(e.target.value) || 1)
         }
     };
 
