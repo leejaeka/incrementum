@@ -1,6 +1,5 @@
 from flask import Flask
-from flask import render_template, request, jsonify
-from sqlalchemy import create_engine
+from flask import request, jsonify
 
 # FOR TREE gen
 import torch
@@ -12,6 +11,8 @@ import numpy as np
 from collections import OrderedDict
 from torchvision import transforms
 from PIL import Image
+import base64
+import json
 
 app = Flask(__name__)
 
@@ -90,45 +91,34 @@ def weights_init(m):
         torch.nn.init.constant_(m.bias, 0)
         
 
-# Initialize variables
-z_dim = 64
-display_step = 50
-batch_size = 64
-lr = 0.0002
-beta_1 = 0.5
-beta_2 = 0.999
-c_lambda = 10
-image_size = 16
-# Decide which device we want to run on
-device = torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")
 
-# create generator object
-gen = Generator(z_dim).to(device)
-gen_opt = torch.optim.Adam(gen.parameters(), lr=lr, betas=(beta_1, beta_2))
-gen = gen.apply(weights_init)
 
-# load generator
-gen.load_state_dict(torch.load('models/treegen3'))
-
-# index webpage displays cool visuals and receives user input text for model
-@app.route('/')
-@app.route('/index')
-def index():
+@app.route('/generate', methods=['GET'])
+def generate():
 	'''
-	render the app with html file
+	generate 16bits trees
 	'''
-    
-    # render web page
-	return render_template('master.html')
+	# Initialize variables
+	z_dim = 64
+	display_step = 50
+	batch_size = 64
+	lr = 0.0002
+	beta_1 = 0.5
+	beta_2 = 0.999
+	c_lambda = 10
+	image_size = 16
+	# Decide which device we want to run on
+	device = torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")
 
+	# create generator object
+	gen = Generator(z_dim).to(device)
+	gen_opt = torch.optim.Adam(gen.parameters(), lr=lr, betas=(beta_1, beta_2))
+	gen = gen.apply(weights_init)
 
-# web page that handles user query and displays model results
-@app.route('/go')
-def go():
-	'''
-	call functions to generate image and render respective html file
-	'''
-	# generate
+	# load generator
+	gen.load_state_dict(torch.load('models/treegen3', map_location=torch.device('cpu')))
+	gen.eval()
+    # generate
 	fake_noise = get_noise(64, 64, device=device)
 	fake = gen(fake_noise)
 	
@@ -139,27 +129,32 @@ def go():
 	image_rgb = abs(torch.ones_like(image_detach)*255-torch.floor((image_detach) * (torch.ones_like(image_detach)*127.5)))
 	im = transforms.ToPILImage()(image_rgb)
 	# save with background output
-	im.save("output/tree_with_bg.png")
+	#im.save("output/tree_with_bg.png")
 	# Add transparent background
-	datas = im.getdata()
+	im_rgb = im.convert("RGBA")
+	datas = im_rgb.getdata()
 	newData = []
 	for item in datas:
 		if item[0] < 75 and item[1] < 75 and item[2] < 75:
 			newData.append((255,255,255,0))
 		else:
 			newData.append(item)
-	im.putdata(newData)
+	im_rgb.putdata(newData)
 
 	# save output
-	im.save("output/tree.png")
+	im_rgb.save("output/tree.png")
+	data = {}
+	with open('output/tree.png', mode='rb') as file:
+		img = file.read()
+	data['img'] = base64.encodebytes(img).decode('utf-8')
+	json.dumps(data)
+	data['img'].replace('\n', '')
+	if request.method == 'GET':
+		return {'data': data}
 
-    # This will render the go.html Please see that file. 
-	return render_template('go.html')
-
-
-def main():
-    #app.run(host='0.0.0.0', port=3001, debug=True)
-	app.run(host='127.0.0.1', port=3001, debug=True)
+		
+#def main():
+#	app.run(host='127.0.0.1', port=3001, debug=True)
 
 if __name__ == '__main__':
-    main()
+    app.run()
