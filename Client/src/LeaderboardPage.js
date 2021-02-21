@@ -1,7 +1,12 @@
 import React from "react";
 import {MDBContainer} from "mdbreact";
+import {Redirect} from 'react-router-dom'
 
-const LeaderboardPage = () => {
+
+const LeaderboardPage = ({isAuthenticated}) => {
+    if (!isAuthenticated)
+        return <Redirect to='/'/>
+
     return (
         <MDBContainer>
             <table className="table">

@@ -1,10 +1,12 @@
 import React from "react";
-import {MDBBox, MDBBtn, MDBContainer, MDBIcon} from "mdbreact";
-import Overview from "./components/Overview";
-import Garden from "./components/Garden";
+import {MDBContainer} from "mdbreact";
 import Chart from "./components/Chart";
+import {Redirect} from 'react-router-dom'
 
-const SavingsPage = () => {
+const SavingsPage = ({isAuthenticated}) => {
+    if (!isAuthenticated)
+        return <Redirect to='/'/>
+
     return (
         <MDBContainer>
             <table className="table">

@@ -16,6 +16,8 @@ import {Signup} from "./components/Signup";
 import SavingsPage from "./SavingsPage";
 import LeaderboardPage from "./LeaderboardPage";
 import ProfilePage from "./ProfilePage";
+import {Redirect} from 'react-router-dom'
+
 
 const App = () => {
   const [ open, setOpen ] = useState(false)
@@ -48,22 +50,25 @@ const App = () => {
             <Login/>
           </Route>
           <Route exact path="/savings">
-            <SavingsPage/>
+            <SavingsPage isAuthenticated={isAuthenticated}/>
           </Route>
           <Route exact path="/overview">
             <Overview/>
           </Route>
           <Route exact path="/profile">
-            <ProfilePage/>
+            <ProfilePage isAuthenticated={isAuthenticated}/>
           </Route>
           <Route exact path="/leaderboard">
-            <LeaderboardPage/>
-          </Route>
-          <Route exact path="/">
-            {isAuthenticated ? <Home/> :<LandingPage/>}
+            <LeaderboardPage isAuthenticated={isAuthenticated}/>
           </Route>
           <Route path="/home">
-            {isAuthenticated ? <Home/> :<LandingPage/>}
+            {isAuthenticated ? <Home/> :<Redirect to='/'/>}
+          </Route>
+          <Route exact path="/">
+            {isAuthenticated ? <Redirect to='/home'/> :<LandingPage/>}
+          </Route>
+          <Route path="/">
+            <Redirect to='/'/>    {/* Redirect invalid paths */}
           </Route>
         </Switch>
       </div>
