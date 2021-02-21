@@ -5,16 +5,22 @@
 <br/>
 
 ![main](/tree_generator/output/1.png)
-
-
-![main](/tree_generator/output/1res.png)
-
 ![main](/tree_generator/output/2.png)
-
+![main](/tree_generator/output/1res.png)
 ![main](/tree_generator/output/2res.png)
-
 ![main](/tree_generator/output/3res.png)
+![main](/tree_generator/output/4res.png)
 
-![main](/tree_generator/output/4.png)
+<br/>
+Generation 100
+![main](/tree_generator/output/t1.png)
+<br/>
+Generation 1000
+![main](/tree_generator/output/t2.png)
+<br/>
+Generation 5000
+![main](/tree_generator/output/t3.png)
 
-![main](/tree_generator/output/ex1.png)
+<br/>
+Generation 40000
+![main](/tree_generator/output/t4.png)
