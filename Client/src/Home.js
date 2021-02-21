@@ -49,11 +49,8 @@ const Home = ({user, setUser, setAuth}) => {
             />
 
             <Dialog open={openSavingDialog} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">How much are you saving?</DialogTitle>
+                <DialogTitle id="form-dialog-title">How much did you save?</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        To plant a tree, please enter the amount here.
-                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -66,7 +63,7 @@ const Home = ({user, setUser, setAuth}) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleSave} color="primary">
-                        Save
+                        Plant tree!
                     </Button>
                 </DialogActions>
             </Dialog>

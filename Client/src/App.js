@@ -46,7 +46,7 @@ const App = () => {
             <ProfilePage setAuth={setAuth} isAuthenticated={isAuthenticated} user={user} setUser={setUser}/>
           </Route>
           <Route exact path="/leaderboard">
-            <LeaderboardPage isAuthenticated={isAuthenticated} user={user}/>
+            <LeaderboardPage isAuthenticated={isAuthenticated} user={user} setUser={setUser} setAuth={setAuth}/>
           </Route>
           <Route exact path="/">
             {isAuthenticated ?  <Home setAuth={setAuth} user={user} setUser={setUser}/> :

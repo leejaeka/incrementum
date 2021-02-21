@@ -2,14 +2,13 @@ import React from "react";
 import {MDBContainer} from "mdbreact";
 import Chart from "./components/Chart";
 import {Redirect} from 'react-router-dom'
-import fb from "firebase";
 
 const SavingsPage = ({user, isAuthenticated}) => {
     if (!isAuthenticated)
         return <Redirect to='/'/>
 
 
-    const savingHistory = user.savings.slice(0).reverse().map((entry,i) => {
+    const savingHistory = user.savings.slice(0).reverse().map((entry, i) => {
         return <tr>
             <td scope="row">{user.savings.length - i}</td>
             <td>{new Date(entry.time.seconds * 1000).toLocaleDateString("en-US")}</td>

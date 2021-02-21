@@ -108,5 +108,21 @@ export function deleteUser(user, setUser, setAuth) {
     });
 }
 
+export async function getTopUsers(setTopUsers) {
+    return db.collection("users").orderBy("totalTrees", "desc").orderBy("totalSavings", "desc").limit(100).get().then((querySnapshot) => {
+        // querySnapshot.forEach((doc) => {
+        //     // doc.data() is never undefined for query doc snapshots
+        //     console.log(doc.id, " => ", doc.data());
+        // });
+
+        let result = []
+        querySnapshot.forEach(doc => result.push(doc.data()));
+
+        setTopUsers(result)
+    })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+}
 
 

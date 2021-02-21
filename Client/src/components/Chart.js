@@ -12,7 +12,7 @@ const ChartsPage = ({user}) => {
                 {
                     label: "My Savings ($)",
                     fill: false,
-                    lineTension: 0.3,
+                    lineTension: 0.2,
                     backgroundColor: "rgba(225, 204,230, .3)",
                     borderColor: "rgb(205, 130, 158)",
                     borderCapStyle: "butt",
