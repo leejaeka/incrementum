@@ -1,6 +1,8 @@
 # Incrementum
 
-Web application that will give prompts and tasks for people to make financial decisions and every time that a task is completed it will create a unique plant which is added to a garden
+
+![main](/static/incrementum.PNG)
+<br/>
 
 ## Available Scripts
 
