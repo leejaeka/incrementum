@@ -79,14 +79,11 @@ const App = () => {
              setModal={setModal}
              setAuth={setAuth}/>
         <Switch>
-          <Route exact path="/questionnaire">
-            <Questionnaire/>
-          </Route>
           <Route exact path="/savings">
             <SavingsPage isAuthenticated={isAuthenticated}/>
           </Route>
           <Route exact path="/profile">
-            <ProfilePage isAuthenticated={isAuthenticated}/>
+            <ProfilePage isAuthenticated={isAuthenticated} session={session}/>
           </Route>
           <Route exact path="/leaderboard">
             <LeaderboardPage isAuthenticated={isAuthenticated}/>
@@ -96,7 +93,7 @@ const App = () => {
           </Route>
           <Route exact path="/">
             {isAuthenticated ? <Redirect to='/home'/> :
-                <LandingPage setAuth={setAuth} modal={modal} setModal={setModal}/>}
+                <LandingPage setAuth={setAuth} modal={modal} setModal={setModal} session={session}/>}
           </Route>
           <Route path="/">
             <Redirect to='/'/> {/* Redirect invalid paths */}

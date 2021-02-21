@@ -18,8 +18,9 @@ import 'mdbreact/dist/css/mdb.css'
 
 import '../css/Home.css'
 import {createUser} from "../utils/AuthHelper";
+import Questionnaire from "./Questionnaire";
 
-const LandingPage = ({setAuth, modal, setModal}) => {
+const LandingPage = ({setAuth, modal, setModal, session}) => {
 
 
   const toggle = () => {
@@ -66,9 +67,9 @@ const LandingPage = ({setAuth, modal, setModal}) => {
 
 
               <MDBModal isOpen={modal} toggle={toggle}>
-                <MDBModalHeader toggle={toggle}>Let's get started!</MDBModalHeader>
+                <MDBModalHeader toggle={toggle}>Let's get started, {session.displayName}!</MDBModalHeader>
                 <MDBModalBody>
-
+                  <Questionnaire session={session}/>
                 </MDBModalBody>
                 <MDBModalFooter>
                   <MDBBtn color="secondary" onClick={() => createUser(true, true, true, true, setAuth)}>Start saving
