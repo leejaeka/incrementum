@@ -66,7 +66,6 @@ export function signIn(setAuth, setUser, setModal) {
                     setAuth(true);
                     setModal(false);
                 } else {
-                    // localStorage.setItem('session', JSON.stringify(newUser));
                     setUser(newUser)
                     setAuth(false);
                     setModal(true);
@@ -96,6 +95,16 @@ export function signOut(setAuth) {
 
 export function addUser(user) {
     db.collection("users").doc(user.uid).set(user);
+}
+
+export function deleteUser(user, setUser, setAuth) {
+    db.collection("users").doc(user.uid).delete().then(() => {
+        signOut(setAuth)
+
+        console.log("User successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing user: ", error);
+    });
 }
 
 // export async function isExistedUser(uid) {

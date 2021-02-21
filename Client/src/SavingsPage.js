@@ -4,6 +4,7 @@ import Chart from "./components/Chart";
 import {Redirect} from 'react-router-dom'
 
 const SavingsPage = ({user, isAuthenticated}) => {
+    const cachedUser = localStorage.getItem('session')
     if (!isAuthenticated)
         return <Redirect to='/'/>
 

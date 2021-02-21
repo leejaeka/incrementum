@@ -1,17 +1,24 @@
 import React from "react";
-import {MDBContainer} from "mdbreact";
+import {MDBBtn, MDBContainer, MDBModalFooter} from "mdbreact";
 import Questionnaire from "./components/Questionnaire";
 import {Redirect} from 'react-router-dom'
+import {deleteUser, submitGoal} from "./utils/AuthHelper";
 
 
 const ProfilePage = ({isAuthenticated, user, setUser, setAuth}) => {
+    const cachedUser = localStorage.getItem('session')
     if (!isAuthenticated)
         return <Redirect to='/'/>
 
     return (
-        <MDBContainer className="profile">
+        <><MDBContainer className="profile">
             <Questionnaire setAuth={setAuth} user={user} setUser={setUser}/>
+            <MDBModalFooter>
+                <MDBBtn color="dark" size={"sm"} onClick={() => deleteUser(user, setUser, setAuth)}>Delete account</MDBBtn>
+            </MDBModalFooter>
         </MDBContainer>
+
+            </>
 
     );
 }

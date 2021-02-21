@@ -48,11 +48,8 @@ const App = () => {
           <Route exact path="/leaderboard">
             <LeaderboardPage isAuthenticated={isAuthenticated} user={user}/>
           </Route>
-          <Route path="/home">
-            {isAuthenticated ? <Home setAuth={setAuth} user={user} setUser={setUser}/> : <Redirect to='/'/>}
-          </Route>
           <Route exact path="/">
-            {isAuthenticated ? <Redirect to='/home'/> :
+            {isAuthenticated ?  <Home setAuth={setAuth} user={user} setUser={setUser}/> :
                 <LandingPage setAuth={setAuth} modal={modal} setModal={setModal} user={user} setUser={setUser}/>}
           </Route>
           <Route path="/">

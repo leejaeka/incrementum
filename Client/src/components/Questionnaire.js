@@ -59,7 +59,7 @@ const Questionnaire = ({setAuth, user, setUser}) => {
                 : null}
             <MDBModalFooter>
                 <MDBBtn color="secondary" onClick={() => submitGoal(setAuth, user, setUser, {goal, saveEachTime})}>Start
-                    saving
+                    planting
                     now!</MDBBtn>
             </MDBModalFooter>
 
