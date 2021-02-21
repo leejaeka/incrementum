@@ -5,6 +5,8 @@ import background from "../img/2dgrass.png";
 const WIDTH = 626;
 const HEIGHT = 375;
 
+const DISPLAY_WIDTH = 1110;
+
 
 const Canvas = props => {
     const canvasRef = useRef(null);
@@ -28,7 +30,7 @@ const Canvas = props => {
     }
 
     const drawRandomTree = (ctx, frameCount) => {
-        // console.log(frameCount)
+        // console.log(window.innerWidth/WIDTH)
 
         if (freeSpace.length) {
             const x = pickRandomPosition();
@@ -57,6 +59,11 @@ const Canvas = props => {
     //     // ctx.fill()
     // }
 
+    useEffect(() => {
+        const canvas = canvasRef.current
+        const context = canvas.getContext('2d')
+        context.scale(DISPLAY_WIDTH/ WIDTH, DISPLAY_WIDTH/ WIDTH);
+    },[]);
 
     useEffect(() => {
 
@@ -68,6 +75,7 @@ const Canvas = props => {
         //Our draw came here
         const render = () => {
             frameCount++
+
             drawRandomTree(context, frameCount)
             animationFrameId = window.requestAnimationFrame(render)
         }
@@ -81,7 +89,7 @@ const Canvas = props => {
     return <canvas style={{
         backgroundImage: `url(${background}`,
         backgroundSize: "contain"
-    }} width={WIDTH} height={HEIGHT}
+    }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH)/WIDTH*HEIGHT}
                    ref={canvasRef} {...props} />
 }
 

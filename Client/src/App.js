@@ -10,7 +10,11 @@ import Garden from "./components/Garden";
 import Questionnaire from "./components/Questionnaire";
 import Overview from "./components/Overview";
 import Stats from "./components/Stats";
-import Home from "./components/Home";
+import Home from "./Home";
+import {Login} from "./components/Login";
+import {Signup} from "./components/Signup";
+import SavingsPage from "./SavingsPage";
+import LeaderboardPage from "./LeaderboardPage";
 
 const App = () => {
   const [ open, setOpen ] = useState(false)
@@ -20,6 +24,7 @@ const App = () => {
     setOpen(!open)
   }
 
+
   return (
     <Router>
       <div>
@@ -28,14 +33,23 @@ const App = () => {
           <Route exact path="/questionnaire">
             <Questionnaire/>
           </Route>
-          <Route exact path="/stats">
-            <Stats/>
+          <Route exact path="/signup">
+            <Signup/>
           </Route>
-          <Route exact path="/stats2">
+          <Route exact path="/login">
+            <Login/>
+          </Route>
+          <Route exact path="/savings">
+            <SavingsPage/>
+          </Route>
+          <Route exact path="/overview">
             <Overview/>
           </Route>
           <Route exact path="/garden">
             <Garden/>
+          </Route>
+          <Route exact path="/leaderboard">
+            <LeaderboardPage/>
           </Route>
           <Route exact path="/">
             <LandingPage/>

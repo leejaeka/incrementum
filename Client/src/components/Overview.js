@@ -3,8 +3,8 @@ import {MDBCard, MDBCardBody, MDBCardText, MDBCol, MDBIcon} from 'mdbreact';
 
 const Overview = () => {
     return (
-        <div className="row">
-            <MDBCol class="col-md">
+        <div className="overview row">
+            <MDBCol className="col-md">
                 <MDBCard className="cascading-admin-card">
                     <div className="admin-up">
                         <MDBIcon icon="money-bill-alt" className="primary-color"/>
@@ -25,14 +25,14 @@ const Overview = () => {
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
-            <MDBCol class="col-md">
+            <MDBCol className="col-md">
                 <MDBCard className="cascading-admin-card">
                     <div className="admin-up">
                         <MDBIcon icon="tree" className="warning-color"/>
                         <div className="data">
                             <p>TREES</p>
                             <h4>
-                                <strong>4</strong>
+                                <strong>19</strong>
                             </h4>
                         </div>
                     </div>
@@ -40,13 +40,12 @@ const Overview = () => {
                         <div className="progress">
                             <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25"
                                  className="progress-bar bg grey" role="progressbar"
-                                 style={{width: '4%'}}/>
+                                 style={{width: '58%'}}/>
                         </div>
-                        <MDBCardText>96 trees to go</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>
-            <MDBCol class="col-md">
+            <MDBCol className="col-md">
                 <MDBCard className="cascading-admin-card">
                     <div className="admin-up">
                         <MDBIcon icon="users" className="light-blue lighten-1"/>
@@ -58,12 +57,7 @@ const Overview = () => {
                         </div>
                     </div>
                     <MDBCardBody>
-                        <div className="progress">
-                            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25"
-                                 className="progress-bar grey darken-2" role="progressbar"
-                                 style={{width: '75%'}}/>
-                        </div>
-                        <MDBCardText>75% of them are actively saving!</MDBCardText>
+                        <MDBCardText>You have 5 friends to plant trees with you!</MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </MDBCol>

@@ -24,13 +24,25 @@ const Nav = ({open, handleOpen, isAuthenticated}) => {
                 <MDBNavbarNav right>
 
                     <MDBNavItem>
-                    <MDBNavLink to="/login">Login</MDBNavLink>
-                </MDBNavItem>
+                        <MDBNavLink to="/login">Login</MDBNavLink>
+                    </MDBNavItem>
 
-                <MDBNavItem>
-                    <MDBNavLink to="/signup">Sign Up</MDBNavLink>
-                </MDBNavItem>
-            </MDBNavbarNav>
+                    <MDBNavItem>
+                        <MDBNavLink to="/signup">Sign Up</MDBNavLink>
+                    </MDBNavItem>
+
+                    <MDBNavItem>
+                        <MDBNavLink to="/savings">Savings</MDBNavLink>
+                    </MDBNavItem>
+
+                    <MDBNavItem>
+                        <MDBNavLink to="/leaderboard">Leaderboard</MDBNavLink>
+                    </MDBNavItem>
+
+                    <MDBNavItem>
+                        <MDBNavLink to="/settings">Settings</MDBNavLink>
+                    </MDBNavItem>
+                </MDBNavbarNav>
             </MDBCollapse>
         </MDBNavbar>
     )
