@@ -3,7 +3,10 @@
 
 ![main](/static/incrementum.PNG)
 <br/>
-
+![main](/static/Setup.PNG)
+<br/>
+![main](/static/trees.PNG)
+<br/>
 ## Available Scripts
 
 In the project directory, you can run:
