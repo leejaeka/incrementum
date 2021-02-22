@@ -1,5 +1,4 @@
 import React from "react";
-import {MDBContainer} from "mdbreact";
 import Overview from "./components/Overview";
 import Garden from "./components/Garden";
 import Button from '@material-ui/core/Button';
@@ -15,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 const Home = ({user, setUser, setAuth}) => {
     const [openSavingDialog, setOpenSavingDialog] = React.useState(false);
 
-    const [savingAmount, setSavingAmount] = React.useState(0);
+    const [savingAmount, setSavingAmount] = React.useState(user.saveEachTime);
     const [save, setSave] = React.useState(false);
 
     const handleClose = () => {
@@ -28,8 +27,11 @@ const Home = ({user, setUser, setAuth}) => {
     };
 
     return (
-        <MDBContainer>
+
+
+        <div className={"home"}>
             <Overview user={user} setUser={setUser}/>
+
             <Garden user={user} setUser={setUser} setAuth={setAuth} setOpenSavingDialog={setOpenSavingDialog}
                     savingAmount={savingAmount} setSavingAmount={setSavingAmount} save={save} setSave={setSave}/>
 
@@ -55,6 +57,7 @@ const Home = ({user, setUser, setAuth}) => {
                         autoFocus
                         margin="dense"
                         id="amount"
+                        defaultValue={user.saveEachTime}
                         label="Amount"
                         type="number"
                         fullWidth
@@ -87,7 +90,8 @@ const Home = ({user, setUser, setAuth}) => {
             {/*        </Button>*/}
             {/*    </DialogActions>*/}
             {/*</Dialog>*/}
-        </MDBContainer>
+        </div>
+
     );
 }
 

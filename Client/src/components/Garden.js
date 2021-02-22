@@ -1,14 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react'
 import '../App.css';
 import background from "../img/2dgrass.png";
-import {MDBBox, MDBBtn, MDBIcon} from "mdbreact";
+import {MDBBox} from "mdbreact";
 import {updateUser} from "../utils/AuthHelper";
 import fb from "firebase";
+import Button from '@material-ui/core/Button';
+// import {makeStyles} from '@material-ui/core/styles';
+// import DeleteIcon from '@material-ui/icons/Delete';
+// import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+// import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
+// import Icon from '@material-ui/core/Icon';
+import FlashOnIcon from '@material-ui/icons/FlashOn';
 
 const WIDTH = 626;
 const HEIGHT = 375;
 
-const DISPLAY_WIDTH = 1110;
+const DISPLAY_WIDTH = window.innerWidth;
 
 
 const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setSavingAmount, save, setSave}) => {
@@ -20,7 +27,7 @@ const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setS
     useEffect(() => {
         if (savingAmount && savingAmount > 0 && save) {
             saveMoney(savingAmount)
-            setSavingAmount(0)
+            setSavingAmount(user.saveEachTime)
         }
         setSave(false)
     });
@@ -152,16 +159,26 @@ const Garden = ({user, setUser, setAuth, setOpenSavingDialog, savingAmount, setS
     // }, [drawRandomTree])
 
     return <>
-        <canvas style={{
+        <canvas className="garden" style={{
             backgroundImage: `url(${background}`,
             backgroundSize: "contain"
         }} width={DISPLAY_WIDTH} height={(DISPLAY_WIDTH) / WIDTH * HEIGHT}
                 ref={canvasRef}/>
         <MDBBox display="flex" justifyContent="center">
-            <MDBBtn onClick={() => setOpenSavingDialog(true)} tag="a" size="lg" floating
-                    className="color-block-5 mb-3 mx-auto rounded-circle z-depth-1">
-                <MDBIcon icon="bolt"/>
-            </MDBBtn>
+            <Button
+                variant="text"
+                color="default"
+                size="large"
+                className={"save"}
+                fullWidth={true}
+                startIcon={<FlashOnIcon/>}
+                onClick={() => setOpenSavingDialog(true)}
+                style={{
+                    color: 'white'
+                }}
+            >
+                Plant tree!
+            </Button>
 
         </MDBBox></>
 }

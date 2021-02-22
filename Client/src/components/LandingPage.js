@@ -40,17 +40,14 @@ const LandingPage = ({setAuth, modal, setModal, user, setUser}) => {
                 >
                   <MDBAnimation type="fadeInLeft" delay=".3s">
                     <h1 className="h1-responsive font-weight-bold mt-sm-5">
-                      Visualize your savings without feeling overwhelmed
+                      Incrementum
                     </h1>
                     <hr className="hr-light"/>
                     <h6 className="mb-4">
-                      Complete your financial goals to grow trees.
+                      Regain financial control and achieve your financial goals by growing trees!
 
                     </h6>
-                    <MDBBtn color="white">Learn More</MDBBtn>
-                    <MDBBtn outline color="white">
-                      Stay Updated
-                    </MDBBtn>
+                    <MDBBtn color="white" href="https://youtu.be/8FhLn01oGGU">Learn More</MDBBtn>
                   </MDBAnimation>
                 </MDBCol>
 

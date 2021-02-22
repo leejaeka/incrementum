@@ -61,7 +61,19 @@ a {
 }
 
 .overview {
-  margin: 50px 0 ;
+  padding: 50px 0 ;
+}
+
+.overview > div {
+  opacity: 0.8;
+}
+
+.overview > div:hover {
+  opacity: 1;
+}
+
+.overview > div > div:hover {
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
 }
 
 html, body {
@@ -82,4 +94,24 @@ html, body {
 .response {
   margin-left: 15px;
   font-weight: bold;
+}
+
+.garden {
+  position: absolute;
+  top: 0;
+  z-index: -1; /* to make it a background */
+}
+
+.home {
+  background: rgb(43,187,173);
+  background: linear-gradient(180deg, rgb(33 128 224) 59%, rgba(118,76,36,1) 60%);
+  height: calc(100% - 72px);
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.save {
+  bottom:5% !important;
+  position: absolute !important;
 }
