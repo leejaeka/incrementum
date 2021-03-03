@@ -1,8 +1,7 @@
 # Incrementum
 
-<br/>
-
-![main](/static/incrementum.PNG)
+Click the image for demo video!
+[![main](/static/incrementum.PNG)](https://devpost.com/software/incrementum)
 
 <br/>
 
